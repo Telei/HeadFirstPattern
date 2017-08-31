@@ -1,0 +1,28 @@
+package decorator.bverage.condiment.impl;
+
+import decorator.bverage.Beverage;
+import decorator.bverage.condiment.CondimentDecorator;
+
+public class Soy extends CondimentDecorator{
+    Beverage beverage;
+
+    public Soy(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    public String getDescription(){
+        return beverage.getDescription()+", Soy ";
+    }
+
+    public double cost(){
+        double cost=beverage.cost();
+        if(beverage.getSize()==Size.TALL){
+            cost+=.1;
+        }else if(beverage.getSize()==Size.GRANDE){
+            cost+=1.40;
+        }else if(beverage.getSize()==Size.VENTI){
+            cost+=1.70;
+        }
+        return cost;
+    }
+}
